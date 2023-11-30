@@ -34,9 +34,8 @@ function Form() {
   || !contemLetras(senha)
   || !contemCaracteresEspeciais(senha);
 
-  //   if (senha.length < 8) {
-  //     <h1 className="valid-password-check">Possuir 8 ou mais caracteres</h1>;
-  //   }
+  const isSenhaValida = senha.length >= 8;
+  const isSenhaValida2 = senha.length <= 16;
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -77,6 +76,16 @@ function Form() {
             value={ senha }
             onChange={ (e) => setSenha(e.target.value) }
           />
+          {isSenhaValida ? (
+            <p className="valid-password-check">Possuir 8 ou mais caracteres</p>
+          ) : (
+            <p className="invalid-password-check">Possuir 8 ou mais caracteres</p>
+          )}
+          {isSenhaValida2 ? (
+            <p className="valid-password-check">Possuir até 16 caracteres</p>
+          ) : (
+            <p className="invalid-password-check">Possuir até 16 caracteres</p>
+          )}
 
           <label htmlFor="URL">URL</label>
           <input
