@@ -3,12 +3,39 @@ import React, { useState } from 'react';
 function Form() {
   const [exibirFormulario, setExibirFormulario] = useState(false);
 
+  // Estados para cada campo do formulário
+  const [nomeServico, setNomeServico] = useState('');
+  const [login, setLogin] = useState('');
+  const [senha, setSenha] = useState('');
+  const [url, setURL] = useState('');
+
   const toggleFormulario = () => {
     setExibirFormulario(!exibirFormulario);
   };
 
   const cancelarFormulario = () => {
     setExibirFormulario(false);
+    // Limpar os estados dos campos ao cancelar o formulário
+    setNomeServico('');
+    setLogin('');
+    setSenha('');
+    setURL('');
+  };
+
+  const contemNumeros = (str: string) => /\d/.test(str);
+  const contemLetras = (str: string) => /[a-zA-Z]/.test(str);
+  const contemCaracteresEspeciais = (str: string) => /[!@#$%^&*(),.?":{}|<>]/.test(str);
+
+  const isDisabled = nomeServico.length === 0
+  || senha.length < 8
+  || senha.length > 16
+  || login.length === 0
+  || !contemNumeros(senha)
+  || !contemLetras(senha)
+  || !contemCaracteresEspeciais(senha);
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
   };
 
   return (
@@ -18,22 +45,50 @@ function Form() {
       )}
 
       {exibirFormulario && (
-        <form className="form">
+        <form className="form" onSubmit={ handleSubmit }>
           {/* Conteúdo do seu formulário aqui */}
           <label htmlFor="nome-do-servico">Nome do serviço</label>
-          <input type="text" name="nome-do-servico" id="nome-do-servico" />
+          <input
+            type="text"
+            name="nome-do-servico"
+            id="nome-do-servico"
+            value={ nomeServico }
+            onChange={ (e) => setNomeServico(e.target.value) }
+          />
 
           <label htmlFor="login">Login</label>
-          <input type="text" name="login" id="login" />
+          <input
+            type="text"
+            name="login"
+            id="login"
+            value={ login }
+            onChange={ (e) => setLogin(e.target.value) }
+          />
 
           <label htmlFor="senha">Senha</label>
-          <input type="password" name="senha" id="senha" />
+          <input
+            type="password"
+            name="senha"
+            id="senha"
+            value={ senha }
+            onChange={ (e) => setSenha(e.target.value) }
+          />
 
           <label htmlFor="URL">URL</label>
-          <input type="text" name="URL" id="URL" />
+          <input
+            type="text"
+            name="URL"
+            id="URL"
+            value={ url }
+            onChange={ (e) => setURL(e.target.value) }
+          />
 
-          <button name="Cadastrar">Cadastrar</button>
-          <button onClick={ cancelarFormulario }>Cancelar</button>
+          <button type="submit" name="Cadastrar" disabled={ isDisabled } id="cadastrar">
+            Cadastrar
+          </button>
+          <button type="button" onClick={ cancelarFormulario }>
+            Cancelar
+          </button>
         </form>
       )}
     </div>
