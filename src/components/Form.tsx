@@ -22,20 +22,19 @@ function Form() {
     setURL('');
   };
 
-  const contemNumeros = (str: string) => /\d/.test(str);
-  const contemLetras = (str: string) => /[a-zA-Z]/.test(str);
-  const contemCaracteresEspeciais = (str: string) => /[!@#$%^&*(),.?":{}|<>]/.test(str);
+  const contemNumeros = (str:string) => /\d/.test(str);
+  const contemLetras = (str:string) => /[a-zA-Z]/.test(str);
+  const contemCaracteresEspeciais = (str:string) => /[!@#$%^&*(),.?":{}|<>]/.test(str);
 
   const isDisabled = nomeServico.length === 0
-  || senha.length < 8
-  || senha.length > 16
-  || login.length === 0
-  || !contemNumeros(senha)
-  || !contemLetras(senha)
-  || !contemCaracteresEspeciais(senha);
+    || senha.length < 8
+    || senha.length > 16
+    || login.length === 0
+    || !contemNumeros(senha)
+    || !contemLetras(senha)
+    || !contemCaracteresEspeciais(senha);
 
-  const isSenhaValida = senha.length >= 8;
-  const isSenhaValida2 = senha.length <= 16;
+  const isSenhaValida = senha.length >= 8 && senha.length <= 16;
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -77,14 +76,21 @@ function Form() {
             onChange={ (e) => setSenha(e.target.value) }
           />
           {isSenhaValida ? (
-            <p className="valid-password-check">Possuir 8 ou mais caracteres</p>
+            <p className="valid-password-check">Possuir 8 ou mais e até 16 caracteres</p>
           ) : (
-            <p className="invalid-password-check">Possuir 8 ou mais caracteres</p>
+            <p className="invalid-password-check">
+              A senha deve ter entre 8 e 16 caracteres
+            </p>
           )}
-          {isSenhaValida2 ? (
-            <p className="valid-password-check">Possuir até 16 caracteres</p>
+          {contemCaracteresEspeciais(senha) ? (
+            <p className="valid-password-check">Possuir algum caractere especial</p>
           ) : (
-            <p className="invalid-password-check">Possuir até 16 caracteres</p>
+            <p className="invalid-password-check">Possuir algum caractere especial</p>
+          )}
+          {contemLetras(senha) && contemNumeros(senha) ? (
+            <p className="valid-password-check">Possuir letras e números</p>
+          ) : (
+            <p className="invalid-password-check">Possuir letras e números</p>
           )}
 
           <label htmlFor="URL">URL</label>
