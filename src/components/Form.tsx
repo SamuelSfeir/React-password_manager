@@ -34,6 +34,10 @@ function Form() {
   || !contemLetras(senha)
   || !contemCaracteresEspeciais(senha);
 
+  //   if (senha.length < 8) {
+  //     <h1 className="valid-password-check">Possuir 8 ou mais caracteres</h1>;
+  //   }
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
