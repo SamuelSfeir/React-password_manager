@@ -31,7 +31,8 @@ function Form(props: FormProps) {
   const contemLetras = (str:string) => /[a-zA-Z]/.test(str);
   const contemCaracteresEspeciais = (str:string) => /[!@#$%^&*(),.?":{}|<>]/.test(str);
 
-  const isSenhaValida = senha.length >= 8 && senha.length <= 16;
+  const isSenhaValida = senha.length >= 8;
+  const isSenhaValida2 = senha.length <= 16;
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formInfo = {
@@ -74,7 +75,14 @@ function Form(props: FormProps) {
           <p className="valid-password-check">Possuir 8 ou mais caracteres</p>
         ) : (
           <p className="invalid-password-check">
-            A senha deve ter entre 8 e 16 caracteres
+            Possuir 8 ou mais caracteres
+          </p>
+        )}
+        {isSenhaValida2 ? (
+          <p className="valid-password-check">Possuir até 16 caracteres</p>
+        ) : (
+          <p className="invalid-password-check">
+            Possuir até 16 caracteres
           </p>
         )}
         {contemCaracteresEspeciais(senha) ? (
