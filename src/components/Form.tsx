@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import FormChild from './FormChild';
 
 function Form() {
   const [exibirFormulario, setExibirFormulario] = useState(false);
+  const [senhasCadastradas, setSenhasCadastradas] = useState(false);
 
   // Estados para cada campo do formulário
   const [nomeServico, setNomeServico] = useState('');
@@ -34,14 +36,17 @@ function Form() {
     || !contemCaracteresEspeciais(senha);
 
   const isSenhaValida = senha.length >= 8 && senha.length <= 16;
-  const isSenhaValida2 = senha.length <= 16;
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setSenhasCadastradas(true);
   };
 
   return (
     <div>
+      {!exibirFormulario && !senhasCadastradas && (
+        <p>Nenhuma senha cadastrada</p>
+      )}
       {!exibirFormulario && (
         <button onClick={ toggleFormulario }>Cadastrar nova senha</button>
       )}
@@ -79,18 +84,13 @@ function Form() {
             <p className="valid-password-check">Possuir 8 ou mais caracteres</p>
           ) : (
             <p className="invalid-password-check">
-              Possuir 8 ou mais caracteres
+              A senha deve ter entre 8 e 16 caracteres
             </p>
           )}
           {contemCaracteresEspeciais(senha) ? (
             <p className="valid-password-check">Possuir algum caractere especial</p>
           ) : (
             <p className="invalid-password-check">Possuir algum caractere especial</p>
-          )}
-          {isSenhaValida2 ? (
-            <p className="valid-password-check">Possuir até 16 caracteres</p>
-          ) : (
-            <p className="invalid-password-check">Possuir até 16 caracteres</p>
           )}
           {contemLetras(senha) && contemNumeros(senha) ? (
             <p className="valid-password-check">Possuir letras e números</p>
