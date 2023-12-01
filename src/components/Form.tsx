@@ -52,7 +52,6 @@ function Form() {
 
       {exibirFormulario && (
         <form className="form" onSubmit={ handleSubmit }>
-          {/* Conteúdo do seu formulário aqui */}
           <label htmlFor="nome-do-servico">Nome do serviço</label>
           <input
             type="text"
