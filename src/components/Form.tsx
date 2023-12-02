@@ -30,6 +30,13 @@ function Form(props: FormProps) {
   const contemNumeros = /\d/.test(senha);
   const contemLetras = (str:string) => /[a-zA-Z]/.test(str);
   const contemCaracteresEspeciais = (str:string) => /[!@#$%^&*(),.?":{}|<>]/.test(str);
+  const isDisabled = nomeServico.length === 0
+    || senha.length < 8
+    || senha.length > 16
+    || login.length === 0
+    || !contemNumeros
+    || !contemLetras(senha)
+    || !contemCaracteresEspeciais(senha);
 
   const isSenhaValida = senha.length >= 8;
   const isSenhaValida2 = senha.length <= 16;
@@ -107,6 +114,7 @@ function Form(props: FormProps) {
           type="submit"
           name="Cadastrar"
           id="cadastrar"
+          disabled={ isDisabled }
         >
           Cadastrar
         </button>
