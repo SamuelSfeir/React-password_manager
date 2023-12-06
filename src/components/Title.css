@@ -1,0 +1,10 @@
+/* Title.css */
+
+.title-animation {
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .title-animation:hover {
+    transform: scale(1.1);
+  }
+  

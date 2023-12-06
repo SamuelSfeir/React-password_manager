@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Form.css';
 
 type FormProps = {
   toggleFormulario: () => void
@@ -52,7 +53,7 @@ function Form(props: FormProps) {
     toggleFormulario();
   };
   return (
-    <div>
+    <div className="form-container">
       <form className="form" onSubmit={ handleSubmit }>
         <label htmlFor="nome-do-servico">Nome do serviço</label>
         <input
@@ -118,7 +119,7 @@ function Form(props: FormProps) {
         >
           Cadastrar
         </button>
-        <button type="submit" onClick={ cancelarFormulario }>
+        <button type="button" onClick={ cancelarFormulario }>
           Cancelar
         </button>
       </form>

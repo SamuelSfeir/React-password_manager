@@ -2,6 +2,7 @@ import './App.css';
 import { useState } from 'react';
 import Title from './components/Title';
 import Form from './components/Form';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [exibirFormulario, setExibirFormulario] = useState(false);
@@ -18,23 +19,37 @@ function App() {
   }[]>([]);
 
   return (
-    <div>
+    <div className="center-content">
       <Title />
       {!exibirFormulario && (
         <>
-          <button onClick={ toggleFormulario }>
+          <button className="button" onClick={ toggleFormulario }>
             Cadastrar nova senha
           </button>
           {listaSenhas.length ? (
             listaSenhas.map((lista) => (
-              <div key={ lista.nomeServico }>
-                <a href={ lista.url }>{lista.nomeServico}</a>
-                <p>{lista.login}</p>
-                <p>{lista.senha}</p>
+              <div key={ lista.nomeServico } className="list-item">
+                <a href={ lista.url }>
+                  {' '}
+                  Serviço:
+                  {' '}
+                  {lista.nomeServico}
+                </a>
+                <p>
+                  {' '}
+                  Usuário:
+                  {' '}
+                  {lista.login}
+                </p>
+                <p>
+                  Senha:
+                  {' '}
+                  {lista.senha}
+                </p>
               </div>
             ))
           ) : (
-            <p>Nenhuma senha cadastrada</p>
+            <p className="no-password-message">Nenhuma senha cadastrada</p>
           )}
         </>
       )}
