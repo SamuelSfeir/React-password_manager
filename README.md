@@ -12,7 +12,7 @@ Password Manager is an application developed in React to simplify password manag
 
 ## How to use
 
-Access the application through this [LINK](http://localhost:5173/). (Desktop version only).
+Access the application through this [LINK](react-password-manager-4wew87ssn-samuelsfeirs-projects.vercel.app). (Desktop version only).
 
 Register your passwords for the desired services.
 
@@ -44,7 +44,7 @@ O Gerenciador de Senhas é uma aplicação desenvolvida em React, para simplific
 
 ## Como Usar
 
-Acesse a aplicação através deste [LINK](http://localhost:5173/). (Versão desktop apenas).
+Acesse a aplicação através deste [LINK](react-password-manager-4wew87ssn-samuelsfeirs-projects.vercel.app). (Versão desktop apenas).
 
 Cadastre suas senhas para os serviços desejados.
 
