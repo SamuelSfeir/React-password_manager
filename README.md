@@ -4,7 +4,7 @@
 <details>
   <summary>English :us: </summary>
   
-  # Password Manager
+# Password Manager
 
 ## Project description
 
