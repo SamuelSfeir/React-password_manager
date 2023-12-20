@@ -35,6 +35,7 @@ Vite: The application is powered by Vite, a bundler that provides fast and effic
 
 <details>
   <summary>Portuguese :brazil: </summary>
+ 
   # Gerenciador de Senhas
 
 ## Descrição do Projeto
